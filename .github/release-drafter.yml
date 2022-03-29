@@ -1,5 +1,5 @@
-version-template: "v$COMPLETE"
-tag-template: "v$COMPLETE"
+version-template: "$COMPLETE"
+tag-template: "v$RESOLVED_VERSION"
 name-template: "v$RESOLVED_VERSION"
 
 template: |
