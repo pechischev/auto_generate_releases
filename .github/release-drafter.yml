@@ -1,4 +1,6 @@
-version-template: "$COMPLETE"
+version-template: "v$COMPLETE"
+tag-template: "v$COMPLETE"
+name-template: "v$RESOLVED_VERSION"
 
 template: |
   ## What’s Changed
