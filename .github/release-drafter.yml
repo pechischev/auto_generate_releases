@@ -1,5 +1,5 @@
 name-template: "v$RESOLVED_VERSION"
-tag-prefix: "-rc.*"
+tag-prefix: "-rc."
 
 template: |
   ## What’s Changed
