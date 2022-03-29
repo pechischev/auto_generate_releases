@@ -1,15 +1,12 @@
-name-template: "v$RESOLVED_VERSION"
-tag-template: 'v$RESOLVED_VERSION'
-
-template: |
-  ## What’s Changed
-
-  $CHANGES
-
-  **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
-  **COMPLETE: v$COMPLETE
-  **RESOLVED_VERSION: v$RESOLVED_VERSION
-  **VERSION: $MAJOR.$MINOR.$PATCH
+#template: |
+#  ## What’s Changed
+#
+#  $CHANGES
+#
+#  **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
+#  **COMPLETE: v$COMPLETE
+#  **RESOLVED_VERSION: v$RESOLVED_VERSION
+#  **VERSION: $MAJOR.$MINOR.$PATCH
 
 categories:
 
