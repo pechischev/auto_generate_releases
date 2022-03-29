@@ -1,6 +1,21 @@
-name-template: 'v$RESOLVED_VERSION'
+version-template: "$COMPLETE"
 
 template: |
   ## What’s Changed
 
   $CHANGES
+
+  **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
+
+categories:
+
+  - title: 'Features'
+    label: 'feature'
+  - title: 'Bug Fixes'
+    label: 'fix'
+  - title: 'Maintenance'
+    label: 'chore'
+  - title: 'Other changes'
+  - title: 'Dependency Updates'
+    label: 'dependencies'
+    collapse-after: 5
