@@ -21,3 +21,5 @@ categories:
   - title: 'Dependency Updates'
     label: 'dependencies'
     collapse-after: 5
+
+prerelease: true
