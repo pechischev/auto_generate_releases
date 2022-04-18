@@ -3,13 +3,15 @@ name: "Create release notes"
 on:
   push:
     tags:
-      - "v*"
       - "*"
 
 jobs:
   create-release-note:
     runs-on: "ubuntu-latest"
     steps:
+      - name: Set tag
+        id: vars
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
       - uses: release-drafter/release-drafter@v5
         # (Optional) specify config name to use, relative to .github/. Default: release-drafter.yml
         # with:
@@ -17,3 +19,4 @@ jobs:
         #   disable-autolabeler: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_VERSION: ${{ steps.vars.outputs.tag }}

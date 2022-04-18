@@ -1,3 +1,6 @@
+name-template: 'v$RELEASE_VERSION'
+tag-template: 'v$RESOLVED_VERSION'
+
 template: |
   ## What’s Changed
 
@@ -5,9 +8,10 @@ template: |
 
   **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
 
-  **RESOLVED_VERSION: v$RESOLVED_VERSION
-  **PREVIOUS_TAG: v$PREVIOUS_TAG
-  **INPUT_VERSION: v$INPUT_VERSION
+  **RESOLVED_VERSION: $RESOLVED_VERSION
+  **PREVIOUS_TAG: $PREVIOUS_TAG
+  **INPUT_VERSION: $INPUT_VERSION
+  **RELEASE_VERSION: $RELEASE_VERSION
 
 categories:
 
