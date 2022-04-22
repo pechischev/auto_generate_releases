@@ -23,7 +23,7 @@ jobs:
         id: get_version
         run: |
           tag=$(echo $GITHUB_REF | cut -d / -f 3 | cut -f 1 -d"-")
-          echo ::set-output name=VERSION::tag
+          echo ::set-output name=VERSION::$tag
       - name: Test
         run: |
           echo ${{ steps.get_version.outputs.VERSION }}
