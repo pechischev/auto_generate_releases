@@ -6,17 +6,29 @@ on:
       - "v*"
 
 jobs:
-  tagged-release:
-    name: "Tagged Release"
+  release:
+    name: "Create release notes"
     runs-on: "ubuntu-latest"
 
     steps:
-      - name: "Build & test"
+      - name: Set tag
+        id: vars
         run: |
-          echo "done!"
+          echo ::set-output name=tag::${GITHUB_REF#refs/*/}
 
-      - uses: "marvinpinto/action-automatic-releases@latest"
+      - name: Build Changelog
+        id: build_changelog
+        uses: mikepenz/release-changelog-builder-action@{latest-release}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create Release
+        uses: actions/create-release@v1
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          body: ${{steps.build_changelog.outputs.changelog}}
           draft: true
-          prerelease: false
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
