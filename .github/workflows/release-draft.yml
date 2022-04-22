@@ -9,13 +9,7 @@ jobs:
   release:
     name: "Create release notes"
     runs-on: "ubuntu-latest"
-    permissions:
-      contents: write
     steps:
-      - name: Set tag
-        id: vars
-        run: |
-          echo ::set-output name=tag::${GITHUB_REF#refs/*/}
 #
 #      - name: Build Changelog
 #        id: build_changelog
@@ -23,14 +17,18 @@ jobs:
 #        env:
 #          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set tag
+        id: vars
+        run: |
+          echo ::set-output name=tag::${GITHUB_REF#refs/*/}
       - name: Create Release
-        uses: actions/create-release@latest
+        uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ steps.vars.outputs.tag }}
-          release_name: ${{ steps.vars.outputs.tag }}
+#          tag_name: ${{ steps.vars.outputs.tag }}
+#          name: ${{ steps.vars.outputs.tag }}
 #          body: ${{steps.build_changelog.outputs.changelog}}
           draft: true
-          generateReleaseNotes: true
+          # generateReleaseNotes: true
           generate_release_notes: true
-          token: ${{ secrets.GITHUB_TOKEN }}
