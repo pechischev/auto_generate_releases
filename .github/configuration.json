@@ -18,5 +18,11 @@
     }
   ],
   "template": "${{CHANGELOG}}\n\n Full Changelog: ${{RELEASE_DIFF}}",
-  "pr_template": "- ${{TITLE}}\n   - PR: #${{NUMBER}}"
+  "pr_template": "- ${{TITLE}}\n   - PR: #${{NUMBER}}",
+  "empty_template": "- Without changes",
+  "max_pull_requests": 1000,
+  "max_back_track_time_days": 1000,
+  "base_branches": [
+    "master"
+  ]
 }
