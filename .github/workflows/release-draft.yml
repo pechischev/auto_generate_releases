@@ -15,20 +15,21 @@ jobs:
         id: vars
         run: |
           echo ::set-output name=tag::${GITHUB_REF#refs/*/}
-
-      - name: Build Changelog
-        id: build_changelog
-        uses: mikepenz/release-changelog-builder-action@v3
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#
+#      - name: Build Changelog
+#        id: build_changelog
+#        uses: mikepenz/release-changelog-builder-action@v3
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create Release
         uses: actions/create-release@v1
         with:
-          tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref }}
-          body: ${{steps.build_changelog.outputs.changelog}}
+          tag_name: ${{ steps.vars.outputs.tag }}
+          release_name: ${{ steps.vars.outputs.tag }}
+#          body: ${{steps.build_changelog.outputs.changelog}}
           draft: true
+          generateReleaseNotes: true
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
