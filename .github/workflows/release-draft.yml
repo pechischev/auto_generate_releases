@@ -9,7 +9,8 @@ jobs:
   release:
     name: "Create release notes"
     runs-on: "ubuntu-latest"
-
+    permissions:
+      contents: write
     steps:
       - name: Set tag
         id: vars
@@ -22,14 +23,14 @@ jobs:
 #        env:
 #          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - uses: actions/checkout@v2
       - name: Create Release
-        uses: actions/create-release@v1
+        uses: actions/create-release@latest
         with:
           tag_name: ${{ steps.vars.outputs.tag }}
           release_name: ${{ steps.vars.outputs.tag }}
 #          body: ${{steps.build_changelog.outputs.changelog}}
           draft: true
           generateReleaseNotes: true
-
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          generate_release_notes: true
+          token: ${{ secrets.GITHUB_TOKEN }}
