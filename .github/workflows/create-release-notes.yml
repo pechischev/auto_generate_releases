@@ -3,7 +3,7 @@ name: "Create release notes"
 on:
   push:
     tags:
-      - "*"
+      - "a*"
 
 jobs:
   create-release-note:
