@@ -21,14 +21,16 @@ jobs:
         uses: actions/checkout@v2
       - name: Get the version
         id: get_version
-        run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3 | cut -f 1 -d"-")
+        run: |
+          tag=$(echo $GITHUB_REF | cut -d / -f 3 | cut -f 1 -d"-")
+          echo ::set-output name=VERSION::tag
       - name: Test
         run: |
           echo ${{ steps.get_version.outputs.VERSION }}
       - name: Create release draft
         uses: softprops/action-gh-release@v1
         with:
-          name: v${{ steps.get_version.outputs.VERSION }}
+          name: ${{ steps.get_version.outputs.VERSION }}
 #          body: ${{steps.build_changelog.outputs.changelog}}
           draft: true
           generate_release_notes: true
