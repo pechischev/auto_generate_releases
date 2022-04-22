@@ -19,16 +19,16 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Set tag
-        id: vars
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+      - name: Test
         run: |
-          echo ::set-output name=tag::${GITHUB_REF#refs/*/}
-      - name: Create Release
+          echo ${{ steps.get_version.outputs.VERSION }}
+      - name: Create release draft
         uses: softprops/action-gh-release@v1
         with:
-#          tag_name: ${{ steps.vars.outputs.tag }}
-#          name: ${{ steps.vars.outputs.tag }}
+          name: v${{ steps.get_version.outputs.VERSION }}
 #          body: ${{steps.build_changelog.outputs.changelog}}
           draft: true
-          # generateReleaseNotes: true
           generate_release_notes: true
