@@ -1,0 +1,22 @@
+{
+  "categories": [
+    {
+      "title": "## 🚀 Features",
+      "labels": ["feature"]
+    },
+    {
+      "title": "## 🐛 Fixes",
+      "labels": ["fix"]
+    },
+    {
+      "title": "## 💬 Other",
+      "labels": ["other", "chore"]
+    },
+    {
+      "title": "## 📦 Dependencies",
+      "labels": ["dependencies", "bumps"]
+    }
+  ],
+  "template": "${{CHANGELOG}}\n\n Full Changelog: ${{RELEASE_DIFF}}",
+  "pr_template": "- ${{TITLE}}\n   - PR: #${{NUMBER}}"
+}

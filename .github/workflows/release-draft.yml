@@ -10,27 +10,32 @@ jobs:
     name: "Create release notes"
     runs-on: "ubuntu-latest"
     steps:
-#
-#      - name: Build Changelog
-#        id: build_changelog
-#        uses: mikepenz/release-changelog-builder-action@v3
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Checkout
         uses: actions/checkout@v2
+
       - name: Get the version
         id: get_version
         run: |
           tag=$(echo $GITHUB_REF | cut -d / -f 3 | cut -f 1 -d"-")
           echo ::set-output name=VERSION::$tag
-      - name: Test
-        run: |
-          echo ${{ steps.get_version.outputs.VERSION }}
+
+      - name: Build Changelog
+        id: build_changelog
+        uses: mikepenz/release-changelog-builder-action@v3
+        with:
+          configuration: ".github/configuration.json"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Show Configuration Changelog
+        env:
+          CHANGELOG: ${{ steps.build_changelog.outputs.changelog }}
+        run: echo "$CHANGELOG"
+
       - name: Create release draft
         uses: softprops/action-gh-release@v1
         with:
           name: ${{ steps.get_version.outputs.VERSION }}
-#          body: ${{steps.build_changelog.outputs.changelog}}
+          body: ${{steps.build_changelog.outputs.changelog}}
           draft: true
-          generate_release_notes: true
+          #generate_release_notes: true
