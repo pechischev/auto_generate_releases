@@ -17,9 +17,11 @@
       "labels": ["dependencies", "bumps"]
     }
   ],
-  "template": "${{CHANGELOG}}\n\n Full Changelog: ${{RELEASE_DIFF}}",
+  "sort": "ASC",
+  "template": "${{CHANGELOG}}\n\n<details>\n<summary>Uncategorized</summary>\n\n${{UNCATEGORIZED}}\n</details>\n\n Full Changelog: ${{RELEASE_DIFF}}",
   "pr_template": "- ${{TITLE}}\n   - PR: #${{NUMBER}}",
   "empty_template": "- Without changes",
+  "max_tags_to_fetch": 200,
   "max_pull_requests": 1000,
   "max_back_track_time_days": 1000,
   "base_branches": [
